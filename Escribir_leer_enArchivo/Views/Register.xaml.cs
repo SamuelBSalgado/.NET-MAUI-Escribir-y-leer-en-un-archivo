@@ -17,7 +17,7 @@ public partial class Register : ContentPage
     async private void Button_Clicked(object sender, EventArgs e)
     {
         User newUser = new User(username.Text, direccion.Text,
-            int.Parse(telefono.Text), correo.Text, password.Text);
+            telefono.Text, correo.Text, password.Text);
         if (dbConn.SaveUser(newUser))
         {
             await Task.Delay(3000);

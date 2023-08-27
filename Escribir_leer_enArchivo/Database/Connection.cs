@@ -35,7 +35,6 @@ namespace Escribir_leer_enArchivo.Database
                 try
                 {
                     createTableCommand.ExecuteNonQuery();
-                    System.Diagnostics.Debug.WriteLine("todo bien");
                 }
                 catch (Exception ex)
                 {
@@ -60,7 +59,7 @@ namespace Escribir_leer_enArchivo.Database
                     while (reader.Read())
                     {
                         Users.Add(new User(reader.GetString(2), reader.GetString(3),
-                            reader.GetOrdinal("telefono"), reader.GetString(5)));
+                            reader.GetString(4), reader.GetString(5)));
                     }
                 }
                 return Users;
@@ -88,8 +87,8 @@ namespace Escribir_leer_enArchivo.Database
                         {
                             string nombre = reader.GetString(reader.GetOrdinal("Nombre"));
                             string direccion = reader.GetString(reader.GetOrdinal("direccion"));
-                            int telefono = reader.GetOrdinal("telefono");
-                            string correo = reader.GetString(reader.GetOrdinal("telefono"));
+                            string telefono = reader.GetString(reader.GetOrdinal("telefono"));
+                            string correo = reader.GetString(reader.GetOrdinal("correo"));
 
                             User searchedUser = new User(nombre, direccion, telefono, correo);
                             return searchedUser;
@@ -130,7 +129,6 @@ namespace Escribir_leer_enArchivo.Database
                     int rowsAffected = insertCommand.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        System.Diagnostics.Debug.WriteLine(rowsAffected);
                         return true;
                     }
                     else

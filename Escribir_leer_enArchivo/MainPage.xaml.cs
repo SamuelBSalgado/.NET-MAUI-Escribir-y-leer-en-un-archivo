@@ -52,16 +52,13 @@ public partial class MainPage : ContentPage
         User currentUser = dbConn.LoginUser(username, password);
         if (currentUser != null)
         {
-            /*var AgendaPage = new Agenda();
-            NavigationPage navigation = new NavigationPage(AgendaPage);
-            Application.Current.MainPage = navigation;*/
 
             var AgendaPage = new Agenda();
-            AgendaPage.nombre = currentUser.nombre;
-            AgendaPage.direccion = currentUser.direccion;
-            AgendaPage.telefono = currentUser.telefono;
-            AgendaPage.correo = currentUser.correo;
-            await Shell.Current.Navigation.PushAsync(AgendaPage);
+            AgendaPage.Nombre = currentUser.nombre;
+            AgendaPage.Direccion = currentUser.direccion;
+            AgendaPage.Telefono = currentUser.telefono;
+            AgendaPage.Correo = currentUser.correo;
+            await Navigation.PushAsync(AgendaPage);
         }
         else
         {
@@ -103,7 +100,7 @@ public partial class MainPage : ContentPage
         }
         else
         {
-            DisplayAlert("Error", "Please enter both username and password.", "OK");
+            await DisplayAlert("Error", "Please enter both username and password.", "OK");
 
         }
 

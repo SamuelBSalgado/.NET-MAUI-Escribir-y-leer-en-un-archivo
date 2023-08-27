@@ -11,11 +11,11 @@ namespace Escribir_leer_enArchivo.Models
         public string nombre { get; set; }
         public string password { get; set; }
         public string direccion { get; set; }
-        public int telefono { get; set; }
+        public string telefono { get; set; }
         public string correo { get; set; }
 
         public User(string nombre, string direccion = null,
-            int telefono = 0, string correo = null,
+            string telefono = null, string correo = null,
             string password = null)
         {
             this.nombre = nombre;
