@@ -1,4 +1,6 @@
 namespace Escribir_leer_enArchivo.Views;
+using Escribir_leer_enArchivo.Database;
+using Escribir_leer_enArchivo.Models;
 
 public partial class Agenda : ContentPage
 {
@@ -6,17 +8,40 @@ public partial class Agenda : ContentPage
     public string Direccion { get; set; }
     public string Telefono { get; set; }
     public string Correo { get; set; }
+
+    private Connection dbConn = new Connection(
+        Path.Combine(
+            Environment.GetFolderPath(
+                Environment.SpecialFolder.LocalApplicationData), "mydb.db"));
     public Agenda()
     {
         InitializeComponent();
+        inNombre.TextChanged += eventoEntryVacio;
+
     }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        lblNombre.Text = Nombre;
-        lblDireccion.Text = Direccion;
-        lblTelefono.Text = Telefono.ToString();
-        lblCorreo.Text = Correo;
+        inNombre.Text = Nombre;
+        inDireccion.Text = Direccion;
+        inTelefono.Text = Telefono.ToString();
+        inCorreo.Text = Correo;
+        GuardarButton.IsEnabled = false;
+    }
+
+    private void eventoEntryVacio(object sender, TextChangedEventArgs e)
+    {
+        string texto = e.NewTextValue;
+
+        if (texto != Nombre)
+        {
+            GuardarButton.IsEnabled = true;
+        }
+        else
+        {
+            GuardarButton.IsEnabled = false;
+        }
     }
 
     private void Guardar_Clicked(object sender, EventArgs e)

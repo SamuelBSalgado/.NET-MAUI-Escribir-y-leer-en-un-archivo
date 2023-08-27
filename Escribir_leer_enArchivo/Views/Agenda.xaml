@@ -6,15 +6,15 @@
 
     <ScrollView>
         <StackLayout>
-            <Entry x:Name="lblNombre" Placeholder="Nombre"/>
-            <Entry x:Name="lblDireccion" Placeholder="Dirección"/>
-            <Entry x:Name="lblTelefono" Placeholder="Teléfono"/>
-            <Entry x:Name="lblCorreo" Placeholder="Correo electrónico"/>
+            <Entry x:Name="inNombre" Placeholder="Nombre"/>
+            <Entry x:Name="inDireccion" Placeholder="Dirección"/>
+            <Entry x:Name="inTelefono" Placeholder="Teléfono"/>
+            <Entry x:Name="inCorreo" Placeholder="Correo electrónico"/>
 
             <Button x:Name="GuardarButton" Text="Guardar" Clicked="Guardar_Clicked"/>
             <Button  Text="Buscar" Clicked="Buscar_Clicked"/>
             <Button Text="Eliminar" Clicked="Eliminar_Clicked"/>
-            <Button x:Name="ModificarButton" Text="Modificar" Clicked="Modificar_Clicked" IsEnabled="False"/>
+            <Button x:Name="ModificarButton" Text="Modificar" Clicked="Modificar_Clicked"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
