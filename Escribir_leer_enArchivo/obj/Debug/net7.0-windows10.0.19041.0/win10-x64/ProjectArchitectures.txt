@@ -1,0 +1,1 @@
+C:\Users\samue\source\repos\Escribir_leer_enArchivo\Escribir_leer_enArchivo\Escribir_leer_enArchivo.csproj;x64
