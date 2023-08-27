@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Escribir_leer_enArchivo.MainPage"
-             Title="Escribir y leer archivo">
+             Title="Escribir y leer archivo SQLite">
     <ScrollView>
         <StackLayout>
             <Label Text="Nombre del archivo:"/>
