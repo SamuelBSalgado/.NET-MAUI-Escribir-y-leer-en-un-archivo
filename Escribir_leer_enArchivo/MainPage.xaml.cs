@@ -1,5 +1,8 @@
 ﻿namespace Escribir_leer_enArchivo;
 using Microsoft.Extensions.Configuration;
+using Escribir_leer_enArchivo.Models;
+using Escribir_leer_enArchivo.Database;
+using Escribir_leer_enArchivo.Views;
 
 public partial class MainPage : ContentPage
 
@@ -11,8 +14,10 @@ public partial class MainPage : ContentPage
 
     private const string PasswordKey = "Password";
 
-
-
+    private Connection dbConn = new Connection(
+        Path.Combine(
+            Environment.GetFolderPath(
+                Environment.SpecialFolder.LocalApplicationData), "mydb.db"));
     public MainPage()
 
     {
@@ -20,9 +25,7 @@ public partial class MainPage : ContentPage
         InitializeComponent();
 
         // Cargar datos guardados si están disponibles
-
         if (Preferences.Get(RememberMeKey, false))
-
         {
 
             UsernameEntry.Text = Preferences.Get(UsernameKey, string.Empty);
@@ -35,9 +38,7 @@ public partial class MainPage : ContentPage
 
     }
 
-
-
-    private void OnLoginButtonClicked(object sender, EventArgs e)
+    async private void OnLoginButtonClicked(object sender, EventArgs e)
 
     {
 
@@ -47,12 +48,25 @@ public partial class MainPage : ContentPage
 
         bool rememberMe = RememberMeCheckbox.IsChecked;
 
-
-
         // Aquí realizarías la lógica de autenticación.
+        User currentUser = dbConn.LoginUser(username, password);
+        if (currentUser != null)
+        {
+            /*var AgendaPage = new Agenda();
+            NavigationPage navigation = new NavigationPage(AgendaPage);
+            Application.Current.MainPage = navigation;*/
 
-        // En este ejemplo, simplemente mostramos un mensaje de éxito.
-
+            var AgendaPage = new Agenda();
+            AgendaPage.nombre = currentUser.nombre;
+            AgendaPage.direccion = currentUser.direccion;
+            AgendaPage.telefono = currentUser.telefono;
+            AgendaPage.correo = currentUser.correo;
+            await Shell.Current.Navigation.PushAsync(AgendaPage);
+        }
+        else
+        {
+            await DisplayAlert("Error", "Cuenta no encontrada", "OK");
+        }
 
 
         if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
@@ -86,24 +100,20 @@ public partial class MainPage : ContentPage
                 Preferences.Set(RememberMeKey, false);
 
             }
-
-
-
-            // Realizar la lógica de autenticación aquí, por ejemplo, navegación a la siguiente página
-
-            DisplayAlert("Success", "Login successful!", "OK");
-
         }
-
         else
-
         {
-
             DisplayAlert("Error", "Please enter both username and password.", "OK");
 
         }
 
     }
 
+    private void OnRegisterButtonClicked(object sender, EventArgs e)
+    {
+        var registerPage = new Register();
+        NavigationPage navigation = new NavigationPage(registerPage);
+        Application.Current.MainPage = navigation;
+    }
+
 }
-    

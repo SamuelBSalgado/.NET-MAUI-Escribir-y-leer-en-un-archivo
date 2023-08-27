@@ -54,15 +54,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\Equipo1\Agenda.xaml.cs">
-	    <DependentUpon>Agenda.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Views\Equipo1\Agenda.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiXaml Update="Views\Agenda.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\Register.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 
 </Project>

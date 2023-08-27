@@ -45,3 +45,9 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Escribir_leer_enArchivo.Views.Agenda.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\Agenda.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\Agenda.xaml
+
+[C:/Users/User/source/repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/Views/Register.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Escribir_leer_enArchivo.Views.Register.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Register.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Register.xaml

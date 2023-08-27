@@ -8,27 +8,40 @@ using Escribir_leer_enArchivo.Models;
 
 namespace Escribir_leer_enArchivo.Database
 {
-    internal class Connection
+    public class Connection
     {
-        private readonly string connectionString;
+        public readonly string connectionString;
 
         public Connection(string dbPath)
         {
             connectionString = $"Data Source={dbPath}";
-            InitializeDatabase();           
+            InitializeDatabase();
         }
 
         private void InitializeDatabase()
         {
+
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
                 var createTableCommand = connection.CreateCommand();
                 createTableCommand.CommandText =
-                    "CREATE TABLE IF NOT EXISTS Users (Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "Nombre TEXT, Descripcion TEXT, Pass TEXT)";
-                createTableCommand.ExecuteNonQuery();
+                    "CREATE TABLE IF NOT EXISTS Users " +
+                    "(Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "nombre TEXT, direccion TEXT, " +
+                    "telefono INTEGER, " +
+                    "correo TEXT, pass TEXT)";
+                try
+                {
+                    createTableCommand.ExecuteNonQuery();
+                    System.Diagnostics.Debug.WriteLine("todo bien");
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                }
+
             }
         }
 
@@ -46,30 +59,92 @@ namespace Escribir_leer_enArchivo.Database
                 {
                     while (reader.Read())
                     {
-                        Users.Add(new User
-                        {                            
-                            Nombre = reader.GetString(1),
-                            Descripcion = reader.GetString(2)
-                        });
+                        Users.Add(new User(reader.GetString(2), reader.GetString(3),
+                            reader.GetOrdinal("telefono"), reader.GetString(5)));
                     }
                 }
                 return Users;
             }
         }
+        public User LoginUser(string nombreIN, string passwordIN)
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
 
-        public void SaveUser(User User)
+                var selectCommand = connection.CreateCommand();
+                selectCommand.CommandText = "SELECT nombre, direccion, " +
+                    "telefono, correo " +
+                    "FROM Users WHERE nombre=@nombre AND pass=@password";
+                selectCommand.Parameters.AddWithValue("@nombre", nombreIN);
+                selectCommand.Parameters.AddWithValue("@password", passwordIN);
+
+                try
+                {
+                    using (var reader = selectCommand.ExecuteReader())
+                    {
+                        reader.Read();
+                        if (reader.HasRows)
+                        {
+                            string nombre = reader.GetString(reader.GetOrdinal("Nombre"));
+                            string direccion = reader.GetString(reader.GetOrdinal("direccion"));
+                            int telefono = reader.GetOrdinal("telefono");
+                            string correo = reader.GetString(reader.GetOrdinal("telefono"));
+
+                            User searchedUser = new User(nombre, direccion, telefono, correo);
+                            return searchedUser;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e);
+                    return null;
+                }
+            }
+        }
+
+        public bool SaveUser(User User)
         {
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
                 var insertCommand = connection.CreateCommand();
-                insertCommand.CommandText = "INSERT INTO Users (Nombre, Pass ,Descripcion) " +
-                    "VALUES (@nombre, @pass ,@descripcion)";
-                insertCommand.Parameters.AddWithValue("@nombre", User.Nombre);
-                insertCommand.Parameters.AddWithValue("@pass", User.Password);
-                insertCommand.Parameters.AddWithValue("@descripcion", User.Descripcion);
-                insertCommand.ExecuteNonQuery();
+                insertCommand.CommandText = "INSERT INTO Users (nombre, direccion, " +
+                    "telefono, correo, pass) " +
+                    "VALUES (@nombre, @direccion, " +
+                    "@telefono, @correo, @pass)";
+                insertCommand.Parameters.AddWithValue("@nombre", User.nombre);
+                insertCommand.Parameters.AddWithValue("@direccion", User.direccion);
+                insertCommand.Parameters.AddWithValue("@telefono", User.telefono);
+                insertCommand.Parameters.AddWithValue("@correo", User.correo);
+                insertCommand.Parameters.AddWithValue("@pass", User.password);
+                try
+                {
+                    int rowsAffected = insertCommand.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        System.Diagnostics.Debug.WriteLine(rowsAffected);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e);
+                    return false;
+                }
+
+
             }
         }
 
