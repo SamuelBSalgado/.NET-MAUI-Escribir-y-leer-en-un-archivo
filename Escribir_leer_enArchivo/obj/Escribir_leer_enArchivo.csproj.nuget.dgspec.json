@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Source\\Repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj": {}
+    "C:\\Users\\User\\source\\repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Source\\Repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj": {
+    "C:\\Users\\User\\source\\repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj",
         "projectName": "Escribir_leer_enArchivo",
-        "projectPath": "C:\\Users\\User\\Source\\Repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Source\\Repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [

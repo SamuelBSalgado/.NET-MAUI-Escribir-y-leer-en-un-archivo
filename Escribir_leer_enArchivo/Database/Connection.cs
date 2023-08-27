@@ -26,7 +26,8 @@ namespace Escribir_leer_enArchivo.Database
 
                 var createTableCommand = connection.CreateCommand();
                 createTableCommand.CommandText =
-                    "CREATE TABLE IF NOT EXISTS Users (Id INTEGER PRIMARY KEY, Nombre TEXT, Descripcion TEXT)";
+                    "CREATE TABLE IF NOT EXISTS Users (Id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "Nombre TEXT, Descripcion TEXT, Pass TEXT)";
                 createTableCommand.ExecuteNonQuery();
             }
         }
@@ -46,14 +47,12 @@ namespace Escribir_leer_enArchivo.Database
                     while (reader.Read())
                     {
                         Users.Add(new User
-                        {
-                            Id = reader.GetInt32(0),
+                        {                            
                             Nombre = reader.GetString(1),
                             Descripcion = reader.GetString(2)
                         });
                     }
                 }
-
                 return Users;
             }
         }
@@ -65,8 +64,10 @@ namespace Escribir_leer_enArchivo.Database
                 connection.Open();
 
                 var insertCommand = connection.CreateCommand();
-                insertCommand.CommandText = "INSERT INTO Users (Nombre, Descripcion) VALUES (@nombre, @descripcion)";
+                insertCommand.CommandText = "INSERT INTO Users (Nombre, Pass ,Descripcion) " +
+                    "VALUES (@nombre, @pass ,@descripcion)";
                 insertCommand.Parameters.AddWithValue("@nombre", User.Nombre);
+                insertCommand.Parameters.AddWithValue("@pass", User.Password);
                 insertCommand.Parameters.AddWithValue("@descripcion", User.Descripcion);
                 insertCommand.ExecuteNonQuery();
             }

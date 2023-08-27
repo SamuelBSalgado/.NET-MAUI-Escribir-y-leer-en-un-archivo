@@ -12,34 +12,40 @@ build_property.EnableSingleFileAnalyzer = true
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = Escribir_leer_enArchivo
-build_property.ProjectDir = C:\Users\User\Source\Repos\.NET-MAUI-Escribir-y-leer-en-un-archivo\Escribir_leer_enArchivo\
+build_property.ProjectDir = C:\Users\User\source\repos\.NET-MAUI-Escribir-y-leer-en-un-archivo\Escribir_leer_enArchivo\
 
-[C:/Users/User/Source/Repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/App.xaml]
+[C:/Users/User/source/repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Escribir_leer_enArchivo.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[C:/Users/User/Source/Repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/AppShell.xaml]
+[C:/Users/User/source/repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Escribir_leer_enArchivo.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[C:/Users/User/Source/Repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/MainPage.xaml]
+[C:/Users/User/source/repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Escribir_leer_enArchivo.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[C:/Users/User/Source/Repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/Resources/Styles/Colors.xaml]
+[C:/Users/User/source/repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Escribir_leer_enArchivo.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[C:/Users/User/Source/Repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/Resources/Styles/Styles.xaml]
+[C:/Users/User/source/repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = Escribir_leer_enArchivo.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Users/User/source/repos/.NET-MAUI-Escribir-y-leer-en-un-archivo/Escribir_leer_enArchivo/Views/Agenda.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Escribir_leer_enArchivo.Views.Agenda.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Agenda.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Agenda.xaml

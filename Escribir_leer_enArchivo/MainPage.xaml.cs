@@ -1,58 +1,109 @@
-﻿namespace Escribir_leer_enArchivo
+﻿namespace Escribir_leer_enArchivo;
+using Microsoft.Extensions.Configuration;
+
+public partial class MainPage : ContentPage
+
 {
-    public partial class MainPage : ContentPage
+
+    private const string RememberMeKey = "RememberMe";
+
+    private const string UsernameKey = "Username";
+
+    private const string PasswordKey = "Password";
+
+
+
+    public MainPage()
+
     {
-        private string filePath;
-        public MainPage()
+
+        InitializeComponent();
+
+        // Cargar datos guardados si están disponibles
+
+        if (Preferences.Get(RememberMeKey, false))
+
         {
-            InitializeComponent();
+
+            UsernameEntry.Text = Preferences.Get(UsernameKey, string.Empty);
+
+            PasswordEntry.Text = Preferences.Get(PasswordKey, string.Empty);
+
+            RememberMeCheckbox.IsChecked = true;
+
         }
 
-        private void OnSaveButtonClicked(object sender, EventArgs e)
-        {
-            // Obtener el nombre del archivo y el texto del editor
-            string fileName = fileNameEntry.Text;
-            string inputText = textEditor.Text;
-
-            // Validar si el nombre del archivo no está vacío
-            if (string.IsNullOrWhiteSpace(fileName))
-            {
-                DisplayAlert("Error", "Ingrese un nombre de archivo válido.", "Aceptar");
-                return;
-            }
-
-            // Guardar el texto en el archivo especificado
-            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
-
-            File.WriteAllText(filePath, inputText);
-
-            // Mostrar mensaje de éxito
-            DisplayAlert("Texto guardado", "El texto se ha guardado correctamente.", "Aceptar");
-        }
-
-        private void OnLoadButtonClicked(object sender, EventArgs e)
-        {
-            string fileName = fileNameEntry.Text;
-
-            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), fileName);
-
-            // Validar si el archivo existe
-            if (File.Exists(filePath))
-            {
-                // Leer el texto desde el archivo
-                string savedText = File.ReadAllText(filePath);
-
-                // Mostrar el texto en el editor
-                textEditor.Text = savedText;
-
-                // Actualizar etiqueta para mostrar el nombre del archivo cargado
-                resultLabel.Text = $"Archivo cargado: {Path.GetFileName(filePath)}";
-            }
-            else
-            {
-                // Mostrar mensaje si el archivo no existe
-                DisplayAlert("Error", "El archivo especificado no existe.", "Aceptar");
-            }
-        }
     }
+
+
+
+    private void OnLoginButtonClicked(object sender, EventArgs e)
+
+    {
+
+        string username = UsernameEntry.Text;
+
+        string password = PasswordEntry.Text;
+
+        bool rememberMe = RememberMeCheckbox.IsChecked;
+
+
+
+        // Aquí realizarías la lógica de autenticación.
+
+        // En este ejemplo, simplemente mostramos un mensaje de éxito.
+
+
+
+        if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
+
+        {
+
+            if (rememberMe)
+
+            {
+
+                // Guardar los datos de autenticación en las preferencias
+
+                Preferences.Set(UsernameKey, username);
+
+                Preferences.Set(PasswordKey, password);
+
+                Preferences.Set(RememberMeKey, true);
+
+            }
+
+            else
+
+            {
+
+                // Si no se recuerdan los datos, eliminarlos de las preferencias
+
+                Preferences.Remove(UsernameKey);
+
+                Preferences.Remove(PasswordKey);
+
+                Preferences.Set(RememberMeKey, false);
+
+            }
+
+
+
+            // Realizar la lógica de autenticación aquí, por ejemplo, navegación a la siguiente página
+
+            DisplayAlert("Success", "Login successful!", "OK");
+
+        }
+
+        else
+
+        {
+
+            DisplayAlert("Error", "Please enter both username and password.", "OK");
+
+        }
+
+    }
+
 }
+    

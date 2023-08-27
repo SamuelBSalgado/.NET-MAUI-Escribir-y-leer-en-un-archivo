@@ -1,21 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
              x:Class="Escribir_leer_enArchivo.MainPage"
-             Title="Escribir y leer archivo SQLite">
+
+             Title="Login">
+
     <ScrollView>
-        <StackLayout>
-            <Label Text="Nombre del archivo:"/>
-            <Entry x:Name="fileNameEntry" Placeholder="Ingrese el nombre del archivo"/>
 
-            <Label Text="Texto a guardar:"/>
-            <Editor x:Name="textEditor" HeightRequest="200"/>
+        <StackLayout Margin="20">
 
-            <Button Text="Guardar Texto" Clicked="OnSaveButtonClicked" HorizontalOptions="Center"/>
+            <Entry x:Name="UsernameEntry" Placeholder="Username" />
 
-            <Button Text="Cargar Texto" Clicked="OnLoadButtonClicked" HorizontalOptions="Center"/>
+            <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
 
-            <Label x:Name="resultLabel" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+ 
+
+            <StackLayout Orientation="Horizontal">
+
+                <CheckBox x:Name="RememberMeCheckbox" VerticalOptions="Center" />
+
+                <Label Text="Remember Me" VerticalOptions="Center" />
+
+            </StackLayout>
+
+ 
+
+            <Button Text="Login" Clicked="OnLoginButtonClicked" />
+
         </StackLayout>
+
     </ScrollView>
+
 </ContentPage>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wxVQZRgkK3PrgjAwBH6D5mOnD76IQAW8yLsNQSpe64UcpiyltGsdXXJVoyC5tPCq4/Y/i85DOImvlU5hcec1bQ==",
+  "dgSpecHash": "Hm82YcYM9HVZOeowf5WbNIbpxHo3Jwz1Ye6fXco/0jy8JUZywFDnrm3IBjjt36EscD131FkzwoEqkrVUbZLOpA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\Source\\Repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj",
+  "projectFilePath": "C:\\Users\\User\\source\\repos\\.NET-MAUI-Escribir-y-leer-en-un-archivo\\Escribir_leer_enArchivo\\Escribir_leer_enArchivo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\googlegson\\2.9.1.1\\googlegson.2.9.1.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.data.sqlite\\7.0.10\\microsoft.data.sqlite.7.0.10.nupkg.sha512",

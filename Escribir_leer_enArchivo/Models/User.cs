@@ -10,6 +10,6 @@ namespace Escribir_leer_enArchivo.Models
     {
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public string password { get; set; }
+        public string Password { get; set; }
     }
 }
