@@ -104,7 +104,7 @@ public partial class Agenda : ContentPage
             User userToDelete = dbConn.GetUser(Nombre);
             if (dbConn.DeleteUser(userToDelete.Id))
             {
-                DisplayAlert("Correcto", $"Contacto {inNombre} Eliminado", "OK");
+                DisplayAlert("Correcto", $"Contacto {userToDelete.nombre} Eliminado", "OK");
                 Nombre = null;
                 LimpiarCampos();
             }
