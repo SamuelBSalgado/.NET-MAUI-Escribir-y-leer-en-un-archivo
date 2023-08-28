@@ -183,21 +183,36 @@ namespace Escribir_leer_enArchivo.Database
                     System.Diagnostics.Debug.WriteLine(e);
                     return false;
                 }
-
-
             }
         }
 
-        public void DeleteUser(int id)
+        public bool DeleteUser(string inNombre)
         {
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
 
                 var deleteCommand = connection.CreateCommand();
-                deleteCommand.CommandText = "DELETE FROM Users WHERE Id = @id";
-                deleteCommand.Parameters.AddWithValue("@id", id);
-                deleteCommand.ExecuteNonQuery();
+                deleteCommand.CommandText = "DELETE FROM Users WHERE nombre = @nombre";
+                deleteCommand.Parameters.AddWithValue("@nombre", inNombre);
+                try
+                {
+                    if (deleteCommand.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        throw new Exception("No Existe el Contacto");
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e);
+                    throw new Exception(e.Message);
+                }
+
             }
         }
     }

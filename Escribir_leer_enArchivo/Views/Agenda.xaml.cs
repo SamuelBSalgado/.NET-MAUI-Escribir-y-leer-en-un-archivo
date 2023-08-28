@@ -93,7 +93,19 @@ public partial class Agenda : ContentPage
     }
     private void Eliminar_Clicked(object sender, EventArgs e)
     {
-
+        try
+        {
+            if (dbConn.DeleteUser(inNombre.Text))
+            {
+                DisplayAlert("Correcto", $"Contacto {inNombre} Eliminado", "OK");
+                Nombre = null;
+                LimpiarCampos();
+            }
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "OK");
+        }
     }
     private void Modificar_Clicked(object sender, EventArgs e)
     {
