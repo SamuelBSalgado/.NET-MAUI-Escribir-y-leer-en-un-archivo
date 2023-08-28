@@ -65,6 +65,48 @@ namespace Escribir_leer_enArchivo.Database
                 return Users;
             }
         }
+        public User GetUser(string inNombre)
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+
+                var selectCommand = connection.CreateCommand();
+                selectCommand.CommandText = "SELECT " +
+                    "nombre, direccion," +
+                    "telefono, correo FROM Users " +
+                    "WHERE nombre=@nombre";
+
+                selectCommand.Parameters.AddWithValue("@nombre", inNombre);
+                using (var reader = selectCommand.ExecuteReader())
+                {
+                    try
+                    {
+                        reader.Read();
+                        if (reader.HasRows)
+                        {
+                            string nombre = reader.GetString(reader.GetOrdinal("Nombre"));
+                            string direccion = reader.GetString(reader.GetOrdinal("direccion"));
+                            string telefono = reader.GetString(reader.GetOrdinal("telefono"));
+                            string correo = reader.GetString(reader.GetOrdinal("correo"));
+
+                            User searchedUser = new User(nombre, direccion, telefono, correo);
+                            return searchedUser;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex);
+                        return null;
+                    }
+
+                }
+            }
+        }
         public User LoginUser(string nombreIN, string passwordIN)
         {
             using (var connection = new SqliteConnection(connectionString))

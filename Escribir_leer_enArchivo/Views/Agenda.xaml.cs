@@ -16,7 +16,7 @@ public partial class Agenda : ContentPage
     public Agenda()
     {
         InitializeComponent();
-        inNombre.TextChanged += eventoEntryVacio;
+        inNombre.TextChanged += EventoEntryVacio;
 
     }
 
@@ -30,27 +30,66 @@ public partial class Agenda : ContentPage
         GuardarButton.IsEnabled = false;
     }
 
-    private void eventoEntryVacio(object sender, TextChangedEventArgs e)
+    private void EventoEntryVacio(object sender, TextChangedEventArgs e)
     {
         string texto = e.NewTextValue;
 
         if (texto != Nombre)
         {
             GuardarButton.IsEnabled = true;
+
         }
         else
         {
             GuardarButton.IsEnabled = false;
         }
     }
-
+    private void LimpiarCampos()
+    {
+        inNombre.Text = "";
+        inDireccion.Text = "";
+        inTelefono.Text = "";
+        inCorreo.Text = "";
+    }
+    private void LlenarCampos(string nombre, string direccion,
+        string telefono, string correo)
+    {
+        EventoEntryVacio(inNombre, new TextChangedEventArgs(inNombre.Text, nombre));
+        inDireccion.Text = direccion;
+        inTelefono.Text = telefono;
+        inCorreo.Text = correo;
+    }
     private void Guardar_Clicked(object sender, EventArgs e)
     {
-
+        User newUser = new User(inNombre.Text, inDireccion.Text,
+            inTelefono.Text, inCorreo.Text);
+        if (dbConn.SaveUser(newUser))
+        {
+            // Muestra el DisplayAlert después de la espera
+            DisplayAlert("Correcto", "Contacto Guardado Con Éxito", "OK");
+            LimpiarCampos();
+        }
+        else
+        {
+            DisplayAlert("Error", "Error al registrar usuario", "OK");
+        }
     }
+
     private void Buscar_Clicked(object sender, EventArgs e)
     {
+        User searchedUser = dbConn.GetUser(inNombre.Text);
 
+        if (searchedUser != null)
+        {
+            Nombre = searchedUser.nombre;
+
+            LlenarCampos(searchedUser.nombre, searchedUser.direccion,
+                searchedUser.telefono, searchedUser.correo);
+        }
+        else
+        {
+            DisplayAlert("Error", "No se Encontro el Contacto " + inNombre.Text, "OK");
+        }
     }
     private void Eliminar_Clicked(object sender, EventArgs e)
     {

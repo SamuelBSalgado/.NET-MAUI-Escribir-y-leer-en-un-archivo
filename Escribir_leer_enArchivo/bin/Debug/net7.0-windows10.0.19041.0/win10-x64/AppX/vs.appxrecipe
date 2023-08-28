@@ -29,13 +29,13 @@
     <AppXManifest Include="C:\Users\User\source\repos\.NET-MAUI-Escribir-y-leer-en-un-archivo\Escribir_leer_enArchivo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-08-27T23:09:04.689</Modified>
+      <Modified>2023-08-28T00:31:28.878</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\User\source\repos\.NET-MAUI-Escribir-y-leer-en-un-archivo\Escribir_leer_enArchivo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-08-27T23:09:04.328</Modified>
+      <Modified>2023-08-28T00:31:28.199</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\User\source\repos\.NET-MAUI-Escribir-y-leer-en-un-archivo\Escribir_leer_enArchivo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Escribir_leer_enArchivo.runtimeconfig.json">
       <PackagePath>Escribir_leer_enArchivo.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\User\source\repos\.NET-MAUI-Escribir-y-leer-en-un-archivo\Escribir_leer_enArchivo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Escribir_leer_enArchivo.dll">
       <PackagePath>Escribir_leer_enArchivo.dll</PackagePath>
-      <Modified>2023-08-27T23:09:03.319</Modified>
+      <Modified>2023-08-28T00:31:26.261</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\User\source\repos\.NET-MAUI-Escribir-y-leer-en-un-archivo\Escribir_leer_enArchivo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>Escribir_leer_enArchivo.exe</PackagePath>
-      <Modified>2023-08-27T23:09:03.343</Modified>
+      <Modified>2023-08-28T00:31:26.328</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\User\source\repos\.NET-MAUI-Escribir-y-leer-en-un-archivo\Escribir_leer_enArchivo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Escribir_leer_enArchivo.deps.json">
       <PackagePath>Escribir_leer_enArchivo.deps.json</PackagePath>

@@ -16,7 +16,7 @@ namespace Escribir_leer_enArchivo.Models
 
         public User(string nombre, string direccion = null,
             string telefono = null, string correo = null,
-            string password = null)
+            string password = "admin")
         {
             this.nombre = nombre;
             this.password = password;
