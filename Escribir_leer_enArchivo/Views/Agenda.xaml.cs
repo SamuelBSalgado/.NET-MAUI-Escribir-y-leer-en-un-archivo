@@ -63,8 +63,10 @@ public partial class Agenda : ContentPage
     {
         User newUser = new User(inNombre.Text, inDireccion.Text,
             inTelefono.Text, inCorreo.Text);
-        if (dbConn.SaveUser(newUser))
+        string newId = dbConn.SaveUser(newUser);
+        if (newId != null)
         {
+            newUser.Id = newId;
             // Muestra el DisplayAlert después de la espera
             DisplayAlert("Correcto", "Contacto Guardado Con Éxito", "OK");
             LimpiarCampos();
@@ -77,19 +79,22 @@ public partial class Agenda : ContentPage
 
     private void Buscar_Clicked(object sender, EventArgs e)
     {
-        User searchedUser = dbConn.GetUser(inNombre.Text);
-
-        if (searchedUser != null)
+        try
         {
-            Nombre = searchedUser.nombre;
+            User searchedUser = dbConn.GetUser(inNombre.Text);
 
-            LlenarCampos(searchedUser.nombre, searchedUser.direccion,
-                searchedUser.telefono, searchedUser.correo);
+            if (searchedUser != null)
+            {
+                Nombre = searchedUser.nombre;
+                LlenarCampos(searchedUser.nombre, searchedUser.direccion,
+                    searchedUser.telefono, searchedUser.correo);
+            }
         }
-        else
+        catch (Exception ex)
         {
-            DisplayAlert("Error", "No se Encontro el Contacto " + inNombre.Text, "OK");
+            DisplayAlert("Error", ex.Message, "OK");
         }
+
     }
     private void Eliminar_Clicked(object sender, EventArgs e)
     {
@@ -109,7 +114,23 @@ public partial class Agenda : ContentPage
     }
     private void Modificar_Clicked(object sender, EventArgs e)
     {
-
+        try
+        {
+            User userToEdit = dbConn.GetUser(Nombre);
+            System.Diagnostics.Debug.WriteLine(userToEdit.Id);
+            System.Diagnostics.Debug.WriteLine(userToEdit.nombre);
+            if (userToEdit != null)
+            {
+                if (dbConn.EditUser(userToEdit))
+                {
+                    DisplayAlert("Correcto", $"Usuario {userToEdit.nombre} Editado", "OK");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "OK");
+        }
     }
 
 }

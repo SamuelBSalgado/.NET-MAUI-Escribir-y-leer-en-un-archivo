@@ -16,12 +16,13 @@ public partial class Register : ContentPage
 
     async private void Button_Clicked(object sender, EventArgs e)
     {
-        User newUser = new User(username.Text, direccion.Text,
+        User newUser = new User(null, username.Text, direccion.Text,
             telefono.Text, correo.Text, password.Text);
-        if (dbConn.SaveUser(newUser))
+        string newId = dbConn.SaveUser(newUser);
+        if (newId != null)
         {
+            newUser.Id = newId;
             await Task.Delay(3000);
-
             // Muestra el DisplayAlert después de la espera
             await DisplayAlert("Success", "Cuenta creada con éxito", "OK");
             var loginPage = new MainPage();
