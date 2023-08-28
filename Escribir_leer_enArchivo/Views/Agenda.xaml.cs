@@ -82,8 +82,7 @@ public partial class Agenda : ContentPage
     {
         try
         {
-            User searchedUser = dbConn.GetUser(inNombre.Text);
-            dbConn.GetUsers();
+            User searchedUser = dbConn.GetUser(inNombre.Text);            
             if (searchedUser != null)
             {
                 Nombre = searchedUser.nombre;
@@ -101,7 +100,7 @@ public partial class Agenda : ContentPage
     {
         try
         {
-            User userToDelete = dbConn.GetUser(Nombre);
+            User userToDelete = dbConn.GetUser(inNombre.Text);
             if (dbConn.DeleteUser(userToDelete.Id))
             {
                 DisplayAlert("Correcto", $"Contacto {userToDelete.nombre} Eliminado", "OK");
