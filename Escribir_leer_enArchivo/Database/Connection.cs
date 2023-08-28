@@ -65,7 +65,7 @@ namespace Escribir_leer_enArchivo.Database
             }
         }
 
-        public List<User> GetUsers()
+        public void GetUsers()
         {
             using (var connection = new SqliteConnection(connectionString))
             {
@@ -79,11 +79,9 @@ namespace Escribir_leer_enArchivo.Database
                 {
                     while (reader.Read())
                     {
-                        Users.Add(new User(reader.GetString(2), reader.GetString(3),
-                            reader.GetString(4), reader.GetString(5)));
+
                     }
                 }
-                return Users;
             }
         }
         public User GetUser(string inNombre)
@@ -176,7 +174,7 @@ namespace Escribir_leer_enArchivo.Database
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
-
+                System.Diagnostics.Debug.WriteLine(user.password);
                 var insertCommand = connection.CreateCommand();
                 insertCommand.CommandText = "INSERT INTO Users (nombre, direccion, " +
                     "telefono, correo, pass) " +
@@ -190,12 +188,12 @@ namespace Escribir_leer_enArchivo.Database
                 try
                 {
                     int rowsAffected = insertCommand.ExecuteNonQuery();
-                    // Obtener el último Id insertado
-                    var getIdCommand = connection.CreateCommand();
-                    getIdCommand.CommandText = "SELECT last_insert_rowid()";
-                    long nuevoId = Convert.ToInt64(getIdCommand.ExecuteScalar());
                     if (rowsAffected > 0)
                     {
+                        // Obtener el último Id insertado
+                        var getIdCommand = connection.CreateCommand();
+                        getIdCommand.CommandText = "SELECT last_insert_rowid()";
+                        long nuevoId = Convert.ToInt64(getIdCommand.ExecuteScalar());
                         return nuevoId.ToString();
                     }
                     else
@@ -219,7 +217,7 @@ namespace Escribir_leer_enArchivo.Database
 
                 var deleteCommand = connection.CreateCommand();
                 deleteCommand.CommandText = "DELETE FROM Users WHERE Id = @id";
-                deleteCommand.Parameters.AddWithValue("@id", id);
+                deleteCommand.Parameters.AddWithValue("@id", int.Parse(id));
                 try
                 {
                     if (deleteCommand.ExecuteNonQuery() > 0)
@@ -242,49 +240,37 @@ namespace Escribir_leer_enArchivo.Database
         }
         public bool EditUser(User user)
         {
-            System.Diagnostics.Debug.WriteLine(user.Id);
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
-                using (var transaction = connection.BeginTransaction())
+
+                var insertCommand = connection.CreateCommand();
+                insertCommand.CommandText = "UPDATE Users SET nombre = @nombre, " +
+                    "direccion = @direccion, " +
+                    "telefono = @telefono, " +
+                    "correo = @correo " +
+                    "WHERE Id = @id";
+                insertCommand.Parameters.AddWithValue("@nombre", user.nombre);
+                insertCommand.Parameters.AddWithValue("@direccion", user.direccion);
+                insertCommand.Parameters.AddWithValue("@telefono", user.telefono);
+                insertCommand.Parameters.AddWithValue("@correo", user.correo);
+                insertCommand.Parameters.AddWithValue("@id", int.Parse(user.Id));
+                try
                 {
-                    // ... Tu código de actualización aquí ...
-
-
-
-
-
-                    var insertCommand = connection.CreateCommand();
-                    insertCommand.CommandText = "UPDATE Users SET nombre=@nombre, " +
-                        "direccion=@direccion, " +
-                        "telefono=@telefono, " +
-                        "correo=@correo " +
-                        "WHERE Id=@id"; 
-                    insertCommand.Parameters.AddWithValue("@nombre", user.nombre);
-                    insertCommand.Parameters.AddWithValue("@direccion", user.direccion);
-                    insertCommand.Parameters.AddWithValue("@telefono", user.telefono);
-                    insertCommand.Parameters.AddWithValue("@correo", user.correo);
-                    insertCommand.Parameters.AddWithValue("@id", int.Parse(user.Id));
-                    try
+                    int rowsAffected = insertCommand.ExecuteNonQuery();
+                    if (rowsAffected > 0)
                     {
-                        System.Diagnostics.Debug.WriteLine(insertCommand.CommandText);
-                        int rowsAffected = insertCommand.ExecuteNonQuery();
-                        transaction.Commit();
-                        System.Diagnostics.Debug.WriteLine($"rowsAffected: {rowsAffected}");
-                        if (rowsAffected > 0)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        return true;
                     }
-                    catch (Exception e)
+                    else
                     {
-                        System.Diagnostics.Debug.WriteLine(e);
-                        throw new Exception(e.Message);
+                        return false;
                     }
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine(e);
+                    return false;
                 }
             }
         }

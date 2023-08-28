@@ -61,7 +61,7 @@ public partial class Agenda : ContentPage
     }
     private void Guardar_Clicked(object sender, EventArgs e)
     {
-        User newUser = new User(inNombre.Text, inDireccion.Text,
+        User newUser = new User(null, inNombre.Text, inDireccion.Text,
             inTelefono.Text, inCorreo.Text);
         string newId = dbConn.SaveUser(newUser);
         if (newId != null)
@@ -69,6 +69,7 @@ public partial class Agenda : ContentPage
             newUser.Id = newId;
             // Muestra el DisplayAlert después de la espera
             DisplayAlert("Correcto", "Contacto Guardado Con Éxito", "OK");
+            Nombre = null;
             LimpiarCampos();
         }
         else
@@ -82,7 +83,7 @@ public partial class Agenda : ContentPage
         try
         {
             User searchedUser = dbConn.GetUser(inNombre.Text);
-
+            dbConn.GetUsers();
             if (searchedUser != null)
             {
                 Nombre = searchedUser.nombre;
@@ -100,7 +101,8 @@ public partial class Agenda : ContentPage
     {
         try
         {
-            if (dbConn.DeleteUser(inNombre.Text))
+            User userToDelete = dbConn.GetUser(Nombre);
+            if (dbConn.DeleteUser(userToDelete.Id))
             {
                 DisplayAlert("Correcto", $"Contacto {inNombre} Eliminado", "OK");
                 Nombre = null;
@@ -121,6 +123,10 @@ public partial class Agenda : ContentPage
             System.Diagnostics.Debug.WriteLine(userToEdit.nombre);
             if (userToEdit != null)
             {
+                userToEdit.nombre = inNombre.Text;
+                userToEdit.direccion = inDireccion.Text;
+                userToEdit.telefono = inTelefono.Text;
+                userToEdit.correo = inCorreo.Text;
                 if (dbConn.EditUser(userToEdit))
                 {
                     DisplayAlert("Correcto", $"Usuario {userToEdit.nombre} Editado", "OK");
